@@ -1,0 +1,38 @@
+project_name: microbes_vector_space_sims
+run_name: starter_ecoli_heatshock
+
+io:
+  raw_input_path: data/raw/ecoli_heatshock_or_recovery.csv
+  processed_dir: data/processed
+  results_dir: results
+
+columns:
+  sample_id: sample_id
+  strain: strain
+  condition: condition
+  time: time_hours
+  trajectory_group: trajectory_id
+
+coordinates:
+  H:
+    source_column: growth_capacity
+    transform: log
+    normalize: robust_z
+  S:
+    source_column: viability_fraction
+    transform: log
+    normalize: robust_z
+  M:
+    source_column: conditioning_score
+    transform: signed_log1p
+    normalize: robust_z
+  R_explicit:
+    source_column: recovery_fraction
+    transform: identity
+    normalize: robust_z
+
+preserve_columns:
+  - replicate
+  - perturbation_class
+  - baseline_flag
+  - recovery_window

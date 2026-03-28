@@ -1,0 +1,4 @@
+sample_id,strain,condition,time_hours,trajectory_id,growth_capacity,viability_fraction,conditioning_score,recovery_fraction,replicate,perturbation_class,baseline_flag,recovery_window
+s1,ecoli_A,baseline,0,ecoli_A_rep1,1.2,0.98,0.0,1.0,1,heat_shock,1,pre
+s2,ecoli_A,heatshock,1,ecoli_A_rep1,0.9,0.75,0.3,0.4,1,heat_shock,0,acute
+s3,ecoli_A,recovery,3,ecoli_A_rep1,1.0,0.85,0.4,0.7,1,heat_shock,0,post
