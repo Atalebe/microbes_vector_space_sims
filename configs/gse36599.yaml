@@ -1,0 +1,42 @@
+dataset_name: gse36599
+
+paths:
+  raw_dir: data/raw/gse36599
+  matrix_file: data/raw/gse36599/GSE36599_series_matrix.txt.gz
+  soft_file: data/raw/gse36599/GSE36599_family.soft.gz
+  interim_dir: data/interim/gse36599
+  processed_dir: data/processed/gse36599
+  logs_dir: results/logs/gse36599
+
+output:
+  master_table: data/interim/gse36599/master_table.parquet
+  sample_metadata: data/interim/gse36599/sample_metadata.csv
+  variable_dictionary: data/interim/gse36599/variable_dictionary.csv
+  run_metadata: results/logs/gse36599/ingest_run_meta.json
+
+dataset:
+  organism: Saccharomyces cerevisiae
+  platform_id: GPL2529
+  series_accession: GSE36599
+  stressor: KCl
+  stressor_concentration: "1 M"
+  baseline_label: normal_growth
+
+sample_title_map:
+  "normal growth 1": normal_growth
+  "normal growth 2": normal_growth
+  "during stress adaptation 1": during_stress_adaptation
+  "during stress adaptation 2": during_stress_adaptation
+  "after stress adaptation 1": after_stress_adaptation
+  "after stress adaptation 2": after_stress_adaptation
+  "during stress recovery 1": during_stress_recovery
+  "during stress recovery 2": during_stress_recovery
+  "after stress recovery 1": after_stress_recovery
+  "after stress recovery 2": after_stress_recovery
+
+condition_order:
+  normal_growth: 0
+  during_stress_adaptation: 1
+  after_stress_adaptation: 2
+  during_stress_recovery: 3
+  after_stress_recovery: 4

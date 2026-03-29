@@ -1,0 +1,44 @@
+dataset_name: gse4370
+
+paths:
+  raw_dir: data/raw/gse4370
+  matrix_file: data/raw/gse4370/GSE4370_series_matrix.txt.gz
+  soft_file: data/raw/gse4370/GSE4370_family.soft.gz
+  interim_dir: data/interim/gse4370
+  processed_dir: data/processed/gse4370
+  logs_dir: results/logs/gse4370
+
+output:
+  master_table: data/interim/gse4370/master_table.parquet
+  sample_metadata: data/interim/gse4370/sample_metadata.csv
+  feature_metadata: data/interim/gse4370/feature_metadata.csv
+  variable_dictionary: data/interim/gse4370/variable_dictionary.csv
+  run_metadata: results/logs/gse4370/ingest_run_meta.json
+
+dataset:
+  organism: Escherichia coli
+  platform_id: GPL3503
+  series_accession: GSE4370
+  experiment_type: two_channel_recovery_time_course
+  medium: "10 mM Na-P (pH 7.5)"
+  reference_channel: "Bonner-Vogel OD~0.5"
+  value_definition: "normalized log2(Cy5/Cy3)"
+  baseline_label: recovery_0min
+
+timepoint_map:
+  "Recovery in 10mM Na-P, 0 min": recovery_0min
+  "Recovery in 10mM Na-P, 15 min": recovery_15min
+  "Recovery in 10mM Na-P, 30 min": recovery_30min
+  "Recovery in 10mM Na-P, 45 min": recovery_45min
+  "Recovery in 10mM Na-P, 60 min": recovery_60min
+  "Recovery in 10mM Na-P, 75 min": recovery_75min
+  "Recovery in 10mM Na-P,90 min": recovery_90min
+
+time_minutes_map:
+  recovery_0min: 0
+  recovery_15min: 15
+  recovery_30min: 30
+  recovery_45min: 45
+  recovery_60min: 60
+  recovery_75min: 75
+  recovery_90min: 90

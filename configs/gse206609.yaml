@@ -1,0 +1,15 @@
+dataset_name: gse206609
+
+paths:
+  raw_dir: data/raw/gse206609
+  suppl_dir: data/raw/gse206609/suppl
+  raw_counts_dir: data/raw/gse206609/raw_counts
+  interim_dir: data/interim/gse206609
+  processed_dir: data/processed/gse206609
+  logs_dir: results/logs/gse206609
+
+output:
+  master_table: data/interim/gse206609/master_table.parquet
+  sample_metadata: data/interim/gse206609/sample_metadata.csv
+  variable_dictionary: data/interim/gse206609/variable_dictionary.csv
+  feature_metadata: data/interim/gse206609/feature_metadata.csv

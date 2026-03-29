@@ -1,0 +1,26 @@
+
+
+# virtual environment
+.venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# data products
+data/raw/
+data/interim/
+data/processed/
+
+# generated results
+results/
+inspect/
+
+# windows metadata
+*.Zone.Identifier
+
+# editor noise
+*.swp
+*.swo
+.DS_Store
+

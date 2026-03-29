@@ -1,69 +1,131 @@
+
 # microbes_vector_space_sims
 
-Reproducible simulation scaffold for the microbial branch of the homeostatic vector space program.
+Microbial homeostatic vector-space simulations and manuscript support code.
 
-## Scope
+This repository builds and analyzes three microbial branches:
 
-This repository is designed to:
+- **GSE36599**  
+  Staged yeast stress, adaptation, and recovery benchmark branch.
 
-1. audit a microbial perturbation or recovery dataset,
-2. define a first-pass `(H, S, M)` state table,
-3. map baseline geometry,
-4. extract a latent recoverability field,
-5. compare latent recoverability to explicit recovery observables,
-6. measure trajectory velocity and directional drift,
-7. run robustness checks,
-8. close with variance scaling.
+- **GSE4370**  
+  Continuous *E. coli* recovery backbone branch.
 
-## Repository layout
+- **GSE206609**  
+  Explicit drug-dependent recoverability branch in *E. coli*.
 
-- `configs/` runtime YAML files
-- `data/raw/` raw input tables placed here by the user
-- `data/interim/` cleaned intermediate files
-- `data/processed/` normalized state tables and derived outputs
-- `results/figures/` plots
-- `results/tables/` CSV summaries
-- `results/logs/` run logs
-- `src/` analysis modules
-- `docs/` design notes and dataset map
-- `scripts/` helper shell entrypoints
+The workflow is organized around reproducible stages:
 
-## First-pass workflow
+1. dataset download and ingestion  
+2. audit and PCA geometry  
+3. state-table construction in \(H, S, M, R\)  
+4. residual field or explicit recoverability analysis  
+5. validation, vector velocity, and variance scaling  
+6. cross-dataset synthesis and manuscript summary products
 
-```bash
-python run_script.py src/01_audit_dataset.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/02_build_state_table.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/03_map_geometry.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/04_fit_residual_field.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/05_build_recoverability.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/06_trajectory_velocity.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/07_validation.py configs/starter_ecoli_heatshock.yaml
-python run_script.py src/08_variance_scaling.py configs/starter_ecoli_heatshock.yaml
-```
+## Repository structure
 
-## Input expectation
+```text
+configs/                    YAML configs for each dataset
+figures/                    curated manuscript-ready PNG figures
+scripts/                    helper shell scripts, including GEO download script
+src/                        analysis scripts
+src/ingest/                 ingestion scripts
+data/raw/                   raw downloaded GEO files, not tracked
+data/interim/               intermediate tables, not tracked
+data/processed/             processed tables, not tracked
+results/                    logs and derived outputs, not tracked
 
-The pipeline assumes a tidy table with one row per observation and columns such as:
+Tracked contents
 
-- sample identifier
-- organism or strain identifier
-- condition or perturbation label
-- timepoint
-- one baseline proxy for `H`
-- one stability proxy for `S`
-- one memory proxy for `M`
-- optional explicit recovery proxy for `R`
+This GitHub repository tracks:
 
-The column names are mapped in the YAML config.
+analysis scripts
+ingestion scripts
+configuration files
+curated manuscript-ready figures
+top-level documentation
 
-## Minimal reproducibility rule
+Large raw downloads and generated outputs are intentionally excluded from version control.
 
-Every simulation run should be tied to:
+Environment
 
-- one config file,
-- one immutable raw input table,
-- one recorded package environment,
-- one results folder with logs, tables, and figures.
+Create and activate a virtual environment, then install requirements:
 
-If a run cannot be reconstructed from those parts, it is not finished.
-# microbes_vector_space_sims
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+Data download
+
+The GEO targets can be downloaded with:
+
+bash scripts/download_geo_targets.sh
+
+Downloaded raw files should be placed under data/raw/.
+
+Main script families
+Ingestion
+src/ingest/ingest_gse36599.py
+src/ingest/ingest_gse4370.py
+src/ingest/ingest_gse206609.py
+Audit
+src/01_audit_gse36599.py
+src/01_audit_gse4370.py
+src/01_audit_gse206609.py
+State tables
+src/02_build_state_table_gse36599.py
+src/02_build_state_table_gse4370.py
+src/02_build_state_table_gse206609.py
+Core branch analyses
+src/03_residual_field_gse36599.py
+src/03_residual_field_gse4370.py
+src/03_build_explicit_R_gse206609.py
+Validation and hardening
+src/05_validate_gse36599.py
+src/05_validate_gse4370.py
+src/05_validate_gse206609.py
+src/06_vector_velocity_gse36599.py
+src/06_vector_velocity_gse4370.py
+src/06_vector_velocity_gse206609.py
+src/07_variance_scaling_gse36599.py
+src/07_variance_scaling_gse4370.py
+src/07_variance_scaling_gse206609.py
+Cross-dataset synthesis
+src/21_cross_dataset_microbes_synthesis_v2.py
+src/22_project_gse206609_onto_gse4370_backbone.py
+src/23_plot_gse206609_on_gse4370_backbone.py
+src/24_build_microbes_paper_summary_table.py
+Minimal execution outline
+GSE36599
+python src/ingest/ingest_gse36599.py configs/gse36599.yaml
+python src/01_audit_gse36599.py configs/gse36599.yaml
+python src/02_build_state_table_gse36599.py configs/gse36599.yaml
+python src/03_residual_field_gse36599.py configs/gse36599.yaml
+python src/04_plot_gse36599.py configs/gse36599.yaml
+python src/05_validate_gse36599.py configs/gse36599.yaml
+python src/06_vector_velocity_gse36599.py configs/gse36599.yaml
+python src/07_variance_scaling_gse36599.py configs/gse36599.yaml
+GSE4370
+python src/ingest/ingest_gse4370.py configs/gse4370.yaml
+python src/01_audit_gse4370.py configs/gse4370.yaml
+python src/02_build_state_table_gse4370.py configs/gse4370.yaml
+python src/03_residual_field_gse4370.py configs/gse4370.yaml
+python src/04_plot_gse4370.py configs/gse4370.yaml
+python src/05_validate_gse4370.py configs/gse4370.yaml
+python src/06_vector_velocity_gse4370.py configs/gse4370.yaml
+python src/07_variance_scaling_gse4370.py configs/gse4370.yaml
+GSE206609
+python src/ingest/ingest_gse206609.py configs/gse206609.yaml
+python src/01_audit_gse206609.py configs/gse206609.yaml
+python src/02_build_state_table_gse206609.py configs/gse206609.yaml
+python src/03_build_explicit_R_gse206609.py configs/gse206609.yaml
+python src/04_plot_gse206609.py configs/gse206609.yaml
+python src/05_validate_gse206609.py configs/gse206609.yaml
+python src/06_vector_velocity_gse206609.py configs/gse206609.yaml
+python src/07_variance_scaling_gse206609.py configs/gse206609.yaml
+python src/09_finalize_explicit_R_gse206609.py configs/gse206609.yaml
+Notes
+Raw GEO downloads are excluded from version control.
+Intermediate and processed tables are excluded from version control.
+The figures/ directory is intentionally tracked because it contains curated manuscript-ready PNGs used in the paper.
+The repository is designed for milestone-level reproducibility, so each branch can be rerun independently before cross-dataset synthesis.
