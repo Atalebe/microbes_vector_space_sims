@@ -1,0 +1,23 @@
+dataset_name: e_mexp_2379
+accession: E-MEXP-2379
+
+paths:
+  raw_dir: data/raw/e_mexp_2379
+  interim_dir: data/interim/e_mexp_2379
+  processed_dir: data/processed/e_mexp_2379
+  log_dir: results/logs/e_mexp_2379
+  figure_dir: results/figures/e_mexp_2379
+
+ingest:
+  preferred_expression_priority:
+    - processed
+    - raw
+  age_labels_expected:
+    - young
+    - old
+  organism_expected: Escherichia coli
+
+analysis:
+  transform: log2
+  pseudocount: 1.0
+  age_coordinate_name: chronological_or_stationary_phase_age

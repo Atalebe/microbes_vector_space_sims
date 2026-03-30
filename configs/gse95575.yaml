@@ -1,0 +1,28 @@
+dataset_name: gse95575
+
+paths:
+  raw_dir: data/raw/gse95575
+  series_matrix: data/raw/gse95575/GSE95575_series_matrix.txt.gz
+  raw_extract_dir: data/raw/gse95575/raw
+  interim_dir: data/interim/gse95575
+  processed_dir: data/processed/gse95575
+  logs_dir: results/logs/gse95575
+  figures_dir: results/figures/gse95575
+
+ingest:
+  preferred_value_type: auto
+  expression_transform: log2_if_needed
+  long_table_name: master_table.parquet
+  sample_metadata_name: sample_metadata.csv
+  feature_metadata_name: feature_metadata.csv
+  variable_dictionary_name: variable_dictionary.csv
+
+recovery_rules:
+  treatment_patterns:
+    - "hgcl2"
+    - "pma"
+    - "mercury"
+  control_patterns:
+    - "control"
+    - "untreated"
+    - "none"

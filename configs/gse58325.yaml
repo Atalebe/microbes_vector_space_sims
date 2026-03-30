@@ -1,0 +1,38 @@
+dataset_name: gse58325
+
+paths:
+  raw_dir: data/raw/gse58325
+  series_matrix: data/raw/gse58325/GSE58325_series_matrix.txt.gz
+  raw_extract_dir: data/raw/gse58325/raw
+  interim_dir: data/interim/gse58325
+  processed_dir: data/processed/gse58325
+  logs_dir: results/logs/gse58325
+  figures_dir: results/figures/gse58325
+
+ingest:
+  preferred_value_type: auto
+  expression_transform: log2_if_needed
+  long_table_name: master_table.parquet
+  sample_metadata_name: sample_metadata.csv
+  feature_metadata_name: feature_metadata.csv
+  variable_dictionary_name: variable_dictionary.csv
+
+conditioning_rules:
+  naive_patterns:
+    - "control"
+    - "none"
+    - "wt"
+    - "unstressed"
+  repeated_patterns:
+    - "->"
+    - "to"
+  same_stress_patterns:
+    - "osm->osm"
+    - "but->but"
+    - "h2o2->h2o2"
+    - "ph->ph"
+  cross_stress_patterns:
+    - "m9->osm"
+    - "but->osm"
+    - "h2o2->ph"
+    - "osm->but"
