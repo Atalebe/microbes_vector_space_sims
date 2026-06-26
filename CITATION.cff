@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "The Homeostatic Vector Space of Microbes"
+message: "If you use this repository, please cite the software release and associated manuscript."
+type: software
+version: "1.0.0"
+license: "MIT"
+abstract: >
+  Reproducible analysis code, processed tables, and figure-generation workflows for the
+  microbial HRSM program. The repository assembles five retained transcriptomic branches:
+  GSE36599 as a staged stress-recovery benchmark, GSE4370 as a continuous E. coli recovery
+  backbone, GSE206609 as an explicit drug-recovery branch, GSE95575 as a conditioning-memory
+  branch, and GSE188790 as an aged-versus-unaged E. coli branch.
+authors:
+  - given-names: Stephen
+    family-names: Atalebe
+    affiliation: "Masaryk University, Brno, Czech Republic"
+keywords:
+  - microbial homeostasis
+  - transcriptomics
+  - recoverability
+  - conditioning memory
+  - age ordering
+  - state space
+  - Escherichia coli
+  - Saccharomyces cerevisiae
+repository-code: "https://github.com/Atalebe/microbes_vector_space_sims"
+url: "https://github.com/Atalebe/microbes_vector_space_sims"

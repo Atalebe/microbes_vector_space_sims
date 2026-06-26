@@ -1,0 +1,26 @@
+{
+  "title": "The Homeostatic Vector Space of Microbes",
+  "version": "1.0.0",
+  "upload_type": "software",
+  "description": "Reproducible analysis code, processed tables, and figure-generation workflows for the microbial HRSM program. The repository assembles five retained transcriptomic branches: GSE36599 as a staged stress-recovery benchmark, GSE4370 as a continuous E. coli recovery backbone, GSE206609 as an explicit drug-recovery branch, GSE95575 as a conditioning-memory branch, and GSE188790 as an aged-versus-unaged E. coli branch.",
+  "creators": [
+    {
+      "name": "Atalebe, Stephen",
+      "affiliation": "Masaryk University, Brno, Czech Republic",
+      "type": "ProjectMember"
+    }
+  ],
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "microbial homeostasis",
+    "transcriptomics",
+    "recoverability",
+    "conditioning memory",
+    "age ordering",
+    "state space",
+    "Escherichia coli",
+    "Saccharomyces cerevisiae"
+  ]
+}
